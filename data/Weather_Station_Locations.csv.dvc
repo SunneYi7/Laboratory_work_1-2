@@ -1,0 +1,5 @@
+outs:
+- md5: 907a9e072334df290c74bd42b976a5e6
+  size: 8510
+  hash: md5
+  path: Weather_Station_Locations.csv

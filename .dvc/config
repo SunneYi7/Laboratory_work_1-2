@@ -1,0 +1,4 @@
+[core]
+    remote = github_remote
+['remote "github_remote"']
+    url = https://github.com/SunneYi7/Laboratory_work_1-2

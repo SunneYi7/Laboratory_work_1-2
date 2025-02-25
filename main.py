@@ -17,9 +17,8 @@ weather_data = pd.read_csv(weather_file, low_memory=False)
 # 🚀 **2. 强制转换所有列为数值型**
 weather_data = weather_data.apply(pd.to_numeric, errors='coerce')
 
-# 🚀 **3. 选择用于建模的特征**
-# 由于 RHX 和 RHN 缺失值过多，我们不使用它们
-features = weather_data[['Precip', 'WindGustSpd', 'Snowfall']]
+# 🚀 **3. 选择用于建模的特征（添加更多特征）**
+features = weather_data[['Precip', 'Snowfall', 'MaxTemp', 'MinTemp', 'PRCP', 'MO', 'YR', 'DA']]
 target = weather_data['MeanTemp']
 
 # 🚀 **4. 处理缺失值**

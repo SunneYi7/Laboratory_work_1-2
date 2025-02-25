@@ -3,7 +3,6 @@ stages:
     cmd: python preprocess.py
     deps:
       - data/Summary_of_Weather.csv
-      - data/Weather_Station_Locations.csv
     outs:
       - processed_data.csv
 

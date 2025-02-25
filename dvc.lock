@@ -22,15 +22,15 @@ stages:
     outs:
     - path: linear_regression_model.pkl
       hash: md5
-      md5: ed202a5083f4c2d0a50188924f2f32b3
-      size: 1065
+      md5: 9a9e5499a9b14d09f2d1d12082148d3e
+      size: 681
   evaluate:
     cmd: python evaluate.py
     deps:
     - path: linear_regression_model.pkl
       hash: md5
-      md5: ed202a5083f4c2d0a50188924f2f32b3
-      size: 1065
+      md5: 9a9e5499a9b14d09f2d1d12082148d3e
+      size: 681
     - path: processed_data.csv
       hash: md5
       md5: 400845c528d8ceb5d16a5e844b891037

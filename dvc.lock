@@ -1,0 +1,46 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python preprocess.py
+    deps:
+    - path: data/Summary_of_Weather.csv
+      hash: md5
+      md5: 16f5421a0f5c50892a5e9f031fb3a7f8
+      size: 11425242
+    - path: data/Weather_Station_Locations.csv
+      hash: md5
+      md5: 907a9e072334df290c74bd42b976a5e6
+      size: 8510
+    outs:
+    - path: processed_data.csv
+      hash: md5
+      md5: e9f644f0e0300feae9ad2e28a66ea0a8
+      size: 3420771
+  train:
+    cmd: python train.py
+    deps:
+    - path: processed_data.csv
+      hash: md5
+      md5: e9f644f0e0300feae9ad2e28a66ea0a8
+      size: 3420771
+    outs:
+    - path: linear_regression_model.pkl
+      hash: md5
+      md5: bf40847098f597691ab32935b38e15f1
+      size: 929
+  evaluate:
+    cmd: python evaluate.py
+    deps:
+    - path: linear_regression_model.pkl
+      hash: md5
+      md5: bf40847098f597691ab32935b38e15f1
+      size: 929
+    - path: processed_data.csv
+      hash: md5
+      md5: e9f644f0e0300feae9ad2e28a66ea0a8
+      size: 3420771
+    outs:
+    - path: metrics.json
+      hash: md5
+      md5: 0c4933cb7384553c297a2afab11b6ed3
+      size: 76

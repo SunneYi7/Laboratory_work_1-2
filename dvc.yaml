@@ -1,0 +1,23 @@
+stages:
+  preprocess:
+    cmd: python preprocess.py
+    deps:
+      - data/Summary_of_Weather.csv
+      - data/Weather_Station_Locations.csv
+    outs:
+      - processed_data.csv
+
+  train:
+    cmd: python train.py
+    deps:
+      - processed_data.csv
+    outs:
+      - linear_regression_model.pkl
+
+  evaluate:
+    cmd: python evaluate.py
+    deps:
+      - linear_regression_model.pkl
+      - processed_data.csv
+    metrics:
+      - metrics.json

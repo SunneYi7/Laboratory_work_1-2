@@ -6,6 +6,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import MinMaxScaler  # 使用 MinMaxScaler
 from sklearn.impute import SimpleImputer
 from sklearn.metrics import mean_squared_error, r2_score
+import seaborn as sns  
 import joblib
 
 # 设置文件路径
@@ -129,3 +130,36 @@ for feature, coef in zip(combined_features.columns, model.coef_):
 # 🚀 **19. 保存模型**
 joblib.dump(model, "linear_regression_model.pkl")
 print("\n✅ 线性回归模型已保存为 linear_regression_model.pkl")
+
+# 可视化特征分布：直方图
+weather_features.hist(bins=20, figsize=(10, 8))
+plt.tight_layout()
+plt.show()
+
+# 可视化特征相关性：热图
+plt.figure(figsize=(12, 8))
+sns.heatmap(weather_features.corr(), annot=True, cmap='coolwarm', fmt='.2f')
+plt.title('Correlation heatmap of weather features')
+plt.show()
+
+
+# 残差图
+residuals = y_test - y_pred
+plt.figure(figsize=(8, 6))
+plt.scatter(y_pred, residuals, alpha=0.7, color='blue', edgecolor='k')
+plt.hlines(y=0, xmin=min(y_pred), xmax=max(y_pred), colors='r', linestyles='--')
+plt.xlabel('Predicted Mean Temperature')
+plt.ylabel('Residuals')
+plt.title('Residuals vs Predicted Mean Temperature')
+plt.grid()
+plt.show()
+
+# 真实值与预测值的对比图（带拟合线）
+plt.figure(figsize=(8, 6))
+plt.scatter(y_test, y_pred, alpha=0.7, color='blue', edgecolor='k')
+plt.plot([min(y_test), max(y_test)], [min(y_test), max(y_test)], color='red', linestyle='--')
+plt.xlabel("True Mean Temperature")
+plt.ylabel("Predicted Mean Temperature")
+plt.title("True vs Predicted Mean Temperature")
+plt.grid()
+plt.show()

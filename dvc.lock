@@ -10,33 +10,33 @@ stages:
     outs:
     - path: processed_data.csv
       hash: md5
-      md5: 400845c528d8ceb5d16a5e844b891037
-      size: 5451305
+      md5: 0bb4e6f06f83e2901fcc0bade6e5dcab
+      size: 5786773
   train:
     cmd: python train.py
     deps:
     - path: processed_data.csv
       hash: md5
-      md5: 400845c528d8ceb5d16a5e844b891037
-      size: 5451305
+      md5: 0bb4e6f06f83e2901fcc0bade6e5dcab
+      size: 5786773
     outs:
     - path: linear_regression_model.pkl
       hash: md5
-      md5: 9a9e5499a9b14d09f2d1d12082148d3e
-      size: 681
+      md5: 288a28362ffe559ba7943043b3e62d41
+      size: 721
   evaluate:
     cmd: python evaluate.py
     deps:
     - path: linear_regression_model.pkl
       hash: md5
-      md5: 9a9e5499a9b14d09f2d1d12082148d3e
-      size: 681
+      md5: 288a28362ffe559ba7943043b3e62d41
+      size: 721
     - path: processed_data.csv
       hash: md5
-      md5: 400845c528d8ceb5d16a5e844b891037
-      size: 5451305
+      md5: 0bb4e6f06f83e2901fcc0bade6e5dcab
+      size: 5786773
     outs:
     - path: metrics.json
       hash: md5
-      md5: 0d874b4900bf174d337736a526538486
-      size: 76
+      md5: 976568bb7ff43fd23e2a5803190009e9
+      size: 74
